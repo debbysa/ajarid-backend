@@ -7,6 +7,10 @@ router.post("/", postsController.store);
 
 //router read
 router.get("/", postsController.index);
+
+//route read by id
+router.get("/:id", postsController.show);
+
 //route update
 router.put("/:id", postsController.update);
 
