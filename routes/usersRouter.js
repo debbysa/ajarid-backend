@@ -5,13 +5,11 @@ const usersController = require("../controller/usersController");
 //route create untuk registrasi
 router.post("/", usersController.store);
 
-router.use(verifyToken);
 
 //router read
 router.get("/", usersController.index);
 //route update
 router.put("/:id", usersController.update);
-
 //route delete
 router.delete("/:id", usersController.destroy);
 

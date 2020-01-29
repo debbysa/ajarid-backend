@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize') //import sequelize
-const sequelize = require('../config/db') //import config/db.js
+const sequelize = require('../config/database') //import config/db.js
 
 const posts = sequelize.define(
     "posts",
@@ -48,7 +48,7 @@ const posts = sequelize.define(
             type: Sequelize.INTEGER
         },featured_order:{
             type: Sequelize.INTEGER
-        },is_recomended:{
+        },is_recommended:{
             type: Sequelize.INTEGER
         },is_breaking:{
             type: Sequelize.INTEGER
@@ -78,7 +78,9 @@ const posts = sequelize.define(
             type: Sequelize.INTEGER
         },image_description:{
             type: Sequelize.STRING(500)
+        },created_At:{
+            type: Sequelize.DATE
         }
     }    
 );
-     module.exports = users      
+     module.exports = posts      

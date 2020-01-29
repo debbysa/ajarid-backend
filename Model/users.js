@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize') //import sequelize
-const sequelize = require('../config/db') //import config/db.js
+const sequelize = require('../config/database') //import config/db.js
 
 const users = sequelize.define(
     "users",

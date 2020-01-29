@@ -2,7 +2,10 @@ const Sequelize = require("sequelize");
 
 const sequelize = new Sequelize("ads.ajar", "root", "", {
   host: "localhost",
-  dialect: "mysql"
+  dialect: "mysql",
+  define: {
+    timestamps: false  
+  }
 });
 
 sequelize
@@ -14,3 +17,4 @@ sequelize
     console.log("error : ", err);
   });
 module.exports = sequelize;
+

@@ -5,8 +5,6 @@ const postsController = require("../controller/postsController");
 //route create untuk registrasi
 router.post("/", postsController.store);
 
-router.use(verifyToken);
-
 //router read
 router.get("/", postsController.index);
 //route update

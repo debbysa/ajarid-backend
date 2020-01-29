@@ -7,6 +7,9 @@ app.use(express.json());
 
 app.use(cors());
 
+app.use("/posts", require("./routes/postsRouter"));
+app.use("/users", require("./routes/usersRouter"));
+
 //middleware
 app.use("/", function() {
   console.log("middleware dilewati");
