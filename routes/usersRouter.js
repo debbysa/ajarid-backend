@@ -7,6 +7,7 @@ router.post("/", usersController.store);
 
 //router read
 router.get("/", usersController.index);
+
 // router read by id
 router.get("/:id", usersController.show);
 

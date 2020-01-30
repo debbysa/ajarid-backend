@@ -1,4 +1,5 @@
 const Posts = require("../model/posts");
+const { calculateLimitAndOffset, paginate } = require("paginate-info");
 
 module.exports = {
   //semua postingan
@@ -6,6 +7,7 @@ module.exports = {
     Posts.findAll().then(function(rows) {
       res.json(rows);
     });
+    // getAll();
   },
 
   // postingan berdasarkan id
@@ -20,6 +22,7 @@ module.exports = {
       res.json(rows);
     });
   },
+
   update: function(req, res) {
     Posts.findByPk(req.params.id).then(function(row) {
       row.update(req.body);
@@ -32,5 +35,19 @@ module.exports = {
       row.destroy();
       res.json(row);
     });
+  }
+};
+
+const getAll = async (req, res) => {
+  try {
+    const {
+      query: { currentPage, pageSize }
+    } = req;
+    const { limit, offset } = calculateLimitAndOffset(currentPage, pageSize);
+    const { rows, count } = await Posts.findAndCountAll({ limit, offet });
+    const meta = paginate(currentPage, count, rows, pageSize);
+    return response(res, 200, "success", { rows, meta });
+  } catch (error) {
+    return response(res, 500, "error", serverError);
   }
 };
