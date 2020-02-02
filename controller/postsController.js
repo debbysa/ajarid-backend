@@ -5,9 +5,16 @@ module.exports = {
   //semua postingan
   index: function(req, res) {
     Posts.findAll().then(function(rows) {
-      res.json(rows);
+      const total = rows.length;
+      const limit = 3;
+      const total_page = Math.ceil(total / limit);
+      const { page } = req.params;
+      // kuncinya disini :
+      const offset = (page - 1) * limit;
+
+      const data = rows.slice(offset, offset + limit);
+      res.send({ data, page, total_page });
     });
-    // getAll();
   },
 
   // postingan berdasarkan id
@@ -15,6 +22,21 @@ module.exports = {
     Posts.findByPk(req.params.id).then(function(row) {
       res.json(row);
     });
+  },
+
+  //coba
+  showById: function(req, res) {
+    Posts.findOne(
+      {
+        where: {
+          user_id: +req.params.id
+        }
+      },
+      function(err, rows) {
+        if (err) return console.error(err);
+        res.json(rows);
+      }
+    );
   },
 
   store: function(req, res) {

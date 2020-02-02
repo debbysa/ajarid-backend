@@ -6,10 +6,10 @@ const postsController = require("../controller/postsController");
 router.post("/", postsController.store);
 
 //router read
-router.get("/", postsController.index);
+router.get("/:page", postsController.index);
 
 //route read by id
-router.get("/:id", postsController.show);
+router.get("/:id", postsController.showById);
 
 //route update
 router.put("/:id", postsController.update);
