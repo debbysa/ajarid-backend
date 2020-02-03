@@ -10,7 +10,7 @@ router.post("/", postsController.store);
 router.get("", postsController.index);
 
 //route read by id
-router.get("/:user_id", postsController.showByUserId);
+router.get("/user/:user_id", postsController.showByUserId);
 
 //route update
 router.put("/:id", postsController.update);
