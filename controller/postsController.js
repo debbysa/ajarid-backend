@@ -6,12 +6,11 @@ module.exports = {
   index: function(req, res) {
     Posts.findAll().then(function(rows) {
       const total = rows.length;
-      const limit = 3;
+      const limit = 6;
       const total_page = Math.ceil(total / limit);
-      const { page } = req.params;
+      const { page } = req.query;
       // kuncinya disini :
       const offset = (page - 1) * limit;
-
       const data = rows.slice(offset, offset + limit);
       res.send({ data, page, total_page });
     });
@@ -25,11 +24,11 @@ module.exports = {
   },
 
   //coba
-  showById: function(req, res) {
-    Posts.findOne(
+  showByUserId: function(req, res) {
+    Posts.findAndCountAll(
       {
         where: {
-          user_id: +req.params.id
+          user_id: req.params.user_id
         }
       },
       function(err, rows) {
