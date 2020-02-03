@@ -25,17 +25,14 @@ module.exports = {
 
   //coba
   showByUserId: function(req, res) {
-    Posts.findAndCountAll(
-      {
-        where: {
-          user_id: req.params.user_id
-        }
-      },
-      function(err, rows) {
-        if (err) return console.error(err);
-        res.json(rows);
+    Posts.findAll({
+      where: {
+        user_id: req.params.user_id
       }
-    );
+    }).then(function(row) {
+      console.log(row);
+      res.json(row);
+    });
   },
 
   store: function(req, res) {
